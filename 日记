@@ -1,3 +1,26 @@
-这是日志  hahah
+static::function() 后期静态绑定的用法
 
-这是我刚刚加的新内容噢噢噢噢
+!!!<?php
+class A {
+    public static function who() {
+        echo __CLASS__;
+    }
+    public static function test() {
+        static::who(); // 后期静态绑定从这里开始
+    }
+}
+
+class B extends A {
+    public static function who() {
+        echo __CLASS__;
+    }
+}
+
+B::test();
+?>
+
+以上例程会输出：
+
+B
+
+相当于 $this get_called_class 这种 谁调用 指向谁
